@@ -1,4 +1,4 @@
-### ����������� ������ Community
+### Музыкальный сервис Community
 
 # Getting Started with Create React App
 
