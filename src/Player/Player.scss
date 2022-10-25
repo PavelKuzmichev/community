@@ -1,104 +1,101 @@
-
 .player {
-    position: absolute;
-    bottom: 0;
-width: 100%;
-margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 10px;
 }
 .player__progress {
-    width: 100%;
-    height: 5px;
-   margin-bottom: 12px;
-    background: #2E2E2E;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 12px;
+  background: #2e2e2e;
 }
 .player__block {
-   padding: 0 36px;
-    display: flex;
-    align-items: center;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
 }
-.player__block_song-image{
-    margin-right: 12px;
+.player__block_song-image {
+  margin-right: 12px;
 }
 .player__block_song-content {
-    margin-right: 50px;
+  margin-right: 50px;
 }
 .player__block_buttons {
-    
-    padding-right: 27px;
-    display: flex;
-    gap: 33px;
-    align-items: center;
+  padding-right: 27px;
+  display: flex;
+  gap: 33px;
+  align-items: center;
 }
 
 .player__block_button {
-    border: none;
-    width: 22px;
-    height: 20px;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
+  border: none;
+  width: 22px;
+  height: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .player__block_button_prev {
-    background-image: url(../images/icon/prev.svg);
+  background-image: url(../images/icon/prev.svg);
 }
 
 .player__block_button_play {
-    background-image: url(../images/icon/play.svg);
+  background-image: url(../images/icon/play.svg);
 }
 
 .player__block_button_next {
-    background-image: url(../images/icon/next.svg);
+  background-image: url(../images/icon/next.svg);
 }
 
 .player__block_button_repeat {
-    background-image: url(../images/icon/repeat.svg);
+  background-image: url(../images/icon/repeat.svg);
 }
 
 .player__block_button_shuffle {
-    background-image: url(../images/icon/shuffle.svg);
+  background-image: url(../images/icon/shuffle.svg);
 }
 
 .player__block_song {
-    display: flex;
-    margin-left: 32px;
+  display: flex;
+  margin-left: 32px;
 }
 
 .player__block_song-image {
-
-    width: 51px;
-    height: 51px;
-    background-color: #313131;
+  width: 51px;
+  height: 51px;
+  background-color: #313131;
 }
-.player__block_song-content{
-display: flex;
-flex-direction: column;
-color: white;
+.player__block_song-content {
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
 .player__block_like-btns {
- display: flex;
- gap: 38px;
- margin-right: auto;
+  display: flex;
+  gap: 38px;
+  margin-right: auto;
 }
 .player__block_like-btn {
- border: none;
- width: 14px;
- height: 13px;
- background-repeat: no-repeat;
- background-position: center;
- background-color: transparent;
+  border: none;
+  width: 14px;
+  height: 13px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }
 .player__block_like-btn_like {
- background-image: url(../images/icon/like.svg);
+  background-image: url(../images/icon/like.svg);
 }
 .player__block_like-btn_disLike {
- background-image: url(../images/icon/dislike.svg);
+  background-image: url(../images/icon/dislike.svg);
 }
-.player__volume{
-    display: flex;
-    gap: 26px;
-    padding-right: 92px;
+.player__volume {
+  display: flex;
+  gap: 26px;
+  padding-right: 92px;
 }
 .player__volume_img {
-    background-image: url(../images/icon/volume.svg);
+  background-image: url(../images/icon/volume.svg);
 }

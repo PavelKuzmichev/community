@@ -1,13 +1,9 @@
-import AuthForm from "../AuthForm/AuthForm";
+import AuthForm from '../AuthForm/AuthForm'
 import React from 'react'
 //import { Route, Switch} from 'react-router-dom'
-import "./Register.scss";
-const Register = ()  => {
-  
-  
-  return (
-    <AuthForm></AuthForm>
-  );
-};
+import './Register.scss'
+const Register = () => {
+  return <AuthForm></AuthForm>
+}
 
-export default Register;
+export default Register
