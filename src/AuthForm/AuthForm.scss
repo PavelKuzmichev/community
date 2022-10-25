@@ -1,0 +1,55 @@
+.authForm {
+    width: 396px;
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.authForm{
+    width: 366px;
+    height: 439px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 43px 47px 47px 40px;
+    box-sizing: border-box;
+}
+.form__button {
+    width: 278px;
+    height: 52px;
+    background-color: #580EA2;
+    border-radius: 6px;
+    margin-left: 4px;
+    border: none;
+    margin-top: 30px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+}
+.form__button_register {
+    color: black;
+    background-color: transparent;
+    border: 1px solid #D0CECE;
+}
+.form__input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #D0CECE;
+    padding: 8px 1px;
+    margin-right: 3px;
+    margin-bottom: 30px;
+}
+.authForm__logo {
+width: 140px;
+height: 21px;
+margin-bottom: 34px;
+background-color: transparent; }
