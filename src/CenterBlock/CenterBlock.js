@@ -8,7 +8,7 @@ function CenterBlock({ isLoading }) {
   CenterBlock.propTypes = {
     isLoading: bool,
   }
-  console.log(isLoading)
+  
   const [isSearchMenuAuthorOpen, setSearchMenuAuthorOpen] =
     React.useState(false)
   const [isSearchMenuGenreOpen, setSearchMenuGenreOpen] = React.useState(false)
