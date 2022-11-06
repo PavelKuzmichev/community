@@ -17,7 +17,7 @@ function BurgerMenu() {
               Главное
             </S.BurgerMenuLink>
 
-            <S.BurgerMenuLink to="/user-playlist">Фильмы</S.BurgerMenuLink>
+            <S.BurgerMenuLink to="/user-playlist">Мои треки</S.BurgerMenuLink>
 
             <S.BurgerMenuLink to="/signin">Войти</S.BurgerMenuLink>
           </S.BurgerMenuLinkList>

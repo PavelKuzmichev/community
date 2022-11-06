@@ -1,4 +1,4 @@
-import AuthForm from '../AuthForm/AuthForm'
+import AuthForm from '../../components/AuthForm/AuthForm'
 import { StyledLogin } from './styles'
 import React from 'react'
 const Login = () => {
