@@ -1,10 +1,7 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { StyledApp } from './styles'
-import Register from '../Register/Register'
-import Login from '../Login/Login'
-import Main from '../Main/Main'
+import { AppRoutes } from '../../routes'
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -29,17 +26,7 @@ function App() {
   return (
     <StyledApp>
       <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Main isLoading={isLoading} />}
-          ></Route>
-          <Route path="/signup" element={<Register />}></Route>
-          <Route path="/signin" element={<Login />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <AppRoutes isLoading={isLoading} />
     </StyledApp>
   )
 }

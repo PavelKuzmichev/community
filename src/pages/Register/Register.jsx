@@ -1,4 +1,4 @@
-import AuthForm from '../AuthForm/AuthForm'
+import AuthForm from '../../components/AuthForm/AuthForm'
 import React from 'react'
 import { StyledRegister } from './styles'
 //import { Route, Switch} from 'react-router-dom'
