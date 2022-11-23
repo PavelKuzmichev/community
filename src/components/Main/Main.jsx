@@ -6,11 +6,10 @@ import CenterBlock from '../CenterBlock/CenterBlock'
 import NavigationMenu from '../NavigationMenu/NavigationMenu'
 import { StyledMain } from './styles'
 import { bool } from 'prop-types'
+Main.propTypes = {
+  isLoading: bool,
+}
 function Main({ isLoading }) {
-  Main.propTypes = {
-    isLoading: bool,
-  }
-
   return (
     <div>
       <Header />
