@@ -6,7 +6,7 @@ const UserAccount = () => {
   return (
     <S.SideBar>
       <S.SideBarName>Pavel Kuzmichev</S.SideBarName>
-      <S.SideBarAvatar src={logo} alt="аватар"></S.SideBarAvatar>
+      <S.SideBarAvatar src={logo} alt="аватар" />
     </S.SideBar>
   )
 }

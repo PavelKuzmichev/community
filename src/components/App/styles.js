@@ -8,5 +8,6 @@ export const StyledApp = styled.div`
   height: 100vh;
   margin: 0 auto;
   position: relative;
-  background: #181818;
+  background: ${(props) => props.$IsTheme.background};
+  color: ${(props) => props.$IsTheme.color};
 `

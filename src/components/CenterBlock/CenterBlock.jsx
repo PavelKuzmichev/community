@@ -3,12 +3,12 @@ import { Fragment } from 'react'
 import Track from '../Track/Track'
 import { bool } from 'prop-types'
 import * as S from './styles'
-
+import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
 function CenterBlock({ isPlayList, isLoading }) {
   CenterBlock.propTypes = {
     isLoading: bool,
   }
-
+  const { theme } = useThemeContext()
   const [isSearchMenuAuthorOpen, setSearchMenuAuthorOpen] =
     React.useState(false)
   const [isSearchMenuGenreOpen, setSearchMenuGenreOpen] = React.useState(false)
@@ -41,12 +41,13 @@ function CenterBlock({ isPlayList, isLoading }) {
             <S.CenterBlockFilterBtn
               onClick={toggleBurgerMenuOpen}
               $isOpen={isSearchMenuAuthorOpen}
+              $IsTheme={theme}
             >
               исполнителю
             </S.CenterBlockFilterBtn>
             {isSearchMenuAuthorOpen && (
               <Fragment>
-                <S.SearchMenuAuthor>
+                <S.SearchMenuAuthor $IsTheme={theme}>
                   <S.SearchMenuItem>Michael Jackson</S.SearchMenuItem>
                   <S.SearchMenuItem>Frank Sinatra</S.SearchMenuItem>
                   <S.SearchMenuItem>Calvin Harris</S.SearchMenuItem>
@@ -59,12 +60,13 @@ function CenterBlock({ isPlayList, isLoading }) {
             <S.CenterBlockFilterBtn
               onClick={toggleSearchMenuYearOpen}
               $isOpen={isSearchMenuYearOpen}
+              $IsTheme={theme}
             >
               году выпуска
             </S.CenterBlockFilterBtn>
             {isSearchMenuYearOpen && (
               <Fragment>
-                <S.SearchMenuYear>
+                <S.SearchMenuYear $IsTheme={theme}>
                   <S.SearchMenuYearInput
                     type="radio"
                     id="yearNewer"
@@ -90,12 +92,13 @@ function CenterBlock({ isPlayList, isLoading }) {
             <S.CenterBlockFilterBtn
               onClick={toggleSearchMenuGenreOpen}
               $isOpen={isSearchMenuGenreOpen}
+              $IsTheme={theme}
             >
               жанру
             </S.CenterBlockFilterBtn>
             {isSearchMenuGenreOpen && (
               <Fragment>
-                <S.SearchMenuGenre>
+                <S.SearchMenuGenre $IsTheme={theme}>
                   <S.SearchMenuItem>Рок</S.SearchMenuItem>
                   <S.SearchMenuItem>Хип-хоп</S.SearchMenuItem>
                   <S.SearchMenuItem>Поп-музыка</S.SearchMenuItem>

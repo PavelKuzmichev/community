@@ -1,8 +1,10 @@
 import { React, useRef, useState, useEffect } from 'react'
 import * as S from './styles'
 import song from '../../audio/song.mp3'
+import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
 
 function Player() {
+  const { theme } = useThemeContext()
   const [isPlaying, setIsPlaying] = useState(false)
   const [trackProgress, setTrackProgress] = useState(0)
   const audioRef = useRef(null)
@@ -46,35 +48,33 @@ function Player() {
       <S.Audio controls ref={audioRef}>
         <source src={song} type="audio/mpeg" />
       </S.Audio>
-      <S.PlayerProgress $trackProgress={trackProgress}> </S.PlayerProgress>
+      <S.PlayerProgress $IsTheme={theme} $trackProgress={trackProgress} />
       <S.PlayerBlock>
         <S.PlayerBlockButtons>
-          <S.PlayerBlockButtonPrev></S.PlayerBlockButtonPrev>
+          <S.PlayerBlockButtonPrev $IsTheme={theme} />
           <S.PlayerBlockButtonPlay
+            $IsTheme={theme}
             onClick={togglePlay}
             $IsPlaying={isPlaying}
-          ></S.PlayerBlockButtonPlay>
-          <S.PlayerBlockButtonNext></S.PlayerBlockButtonNext>
-          <S.PlayerBlockButtonRepeat></S.PlayerBlockButtonRepeat>
-          <S.PlayerBlockButtonShuffle></S.PlayerBlockButtonShuffle>
+          />
+          <S.PlayerBlockButtonNext $IsTheme={theme} />
+          <S.PlayerBlockButtonRepeat $IsTheme={theme} />
+          <S.PlayerBlockButtonShuffle $IsTheme={theme} />
         </S.PlayerBlockButtons>
         <S.PlayerBlockSong>
-          <S.PlayerBlockSongImage></S.PlayerBlockSongImage>
+          <S.PlayerBlockSongImage />
           <S.PlayerBlockSongContent>
             <S.PlayerBlockSongAuthor>Баста</S.PlayerBlockSongAuthor>
             <S.PlayerBlockSongTitle>Ты та...</S.PlayerBlockSongTitle>
           </S.PlayerBlockSongContent>
         </S.PlayerBlockSong>
         <S.PlayerBlockLikeBtns>
-          <S.PlayerBlockLikeBtn></S.PlayerBlockLikeBtn>
-          <S.PlayerBlockLikeBtn $IsDisLike={true}></S.PlayerBlockLikeBtn>
+          <S.PlayerBlockLikeBtn $IsTheme={theme} />
+          <S.PlayerBlockLikeBtn $IsTheme={theme} $IsDisLike={true} />
         </S.PlayerBlockLikeBtns>
         <S.PlayerVolume>
-          <S.PlayerVolumeImg></S.PlayerVolumeImg>
-          <S.PlayerVolumeProgress
-            type="range"
-            name="range"
-          ></S.PlayerVolumeProgress>
+          <S.PlayerVolumeImg $IsTheme={theme} />
+          <S.PlayerVolumeProgress type="range" name="range" />
         </S.PlayerVolume>
       </S.PlayerBlock>
     </S.Player>
