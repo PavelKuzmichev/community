@@ -41,8 +41,8 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
       <StyledApp $IsTheme={currentTheme}>
-        <GlobalStyle />
-        <AppRoutes isLoading={isLoading} />
+        <GlobalStyle/>
+        <AppRoutes isLoading={isLoading}/>
       </StyledApp>
     </ThemeContext.Provider>
   )

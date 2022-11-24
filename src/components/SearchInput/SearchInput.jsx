@@ -5,7 +5,7 @@ import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
 const SearchInput = () => {
   const { theme } = useThemeContext()
   return (
-    <StyledHeaderInput $IsTheme={theme} placeholder="Поиск"></StyledHeaderInput>
+    <StyledHeaderInput $IsTheme={theme} placeholder="Поиск"/>
   )
 }
 

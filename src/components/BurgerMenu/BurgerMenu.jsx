@@ -9,7 +9,7 @@ function BurgerMenu() {
     setBurgerMenuOpen(!isBurgerMenuOpen)
   }
 
-  console.log(theme)
+ 
   return (
     <S.BurgerMenu>
       <S.BurgerMenuBtn
