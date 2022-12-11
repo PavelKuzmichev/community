@@ -14,7 +14,7 @@ export const SideBarName = styled.h2`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: inherit;
 `
 export const SideBarAvatar = styled.img`
   width: 43px;

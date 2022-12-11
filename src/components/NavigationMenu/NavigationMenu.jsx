@@ -9,15 +9,9 @@ function NavigationMenu({ isLoading }) {
   // let load = isLoading ? 'loading' : ''
   return (
     <S.NavigationMenu>
-      <S.NavigationMenuLinkDaily
-        $IsLoading={isLoading}
-      ></S.NavigationMenuLinkDaily>
-      <S.NavigationMenuLinkTop100
-        $IsLoading={isLoading}
-      ></S.NavigationMenuLinkTop100>
-      <S.NavigationMenuLinkIndy
-        $IsLoading={isLoading}
-      ></S.NavigationMenuLinkIndy>
+      <S.NavigationMenuLinkDaily $IsLoading={isLoading} />
+      <S.NavigationMenuLinkTop100 $IsLoading={isLoading} />
+      <S.NavigationMenuLinkIndy $IsLoading={isLoading} />
     </S.NavigationMenu>
   )
 }

@@ -10,9 +10,10 @@ export const StyledHeaderInput = styled.input`
   font-size: 16px;
   line-height: 24px;
   width: 100%;
+  color: inherit;
   background-color: transparent;
-  color: #fff;
-  border-bottom: 1px solid #4e4e4e;
+  border-bottom: 1px solid
+    ${(props) => (props.$IsTheme.dark ? '#4e4e4e' : '#D9D9D9')};
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

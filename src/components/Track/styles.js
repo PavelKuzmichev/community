@@ -4,13 +4,13 @@ export const Track = styled.div`
   text-decoration: none;
   display: flex;
   align-items: center;
-
+  color: inherit;
+  text-decoration: none;
   ${(props) =>
     props.$IsLoading &&
     css`
       background-image: none;
       background-color: rgba(49, 49, 49, 1);
-      color: #313131;
       text-decoration: none;
     `};
 `
@@ -19,13 +19,13 @@ export const TrackTitle = styled.div`
   flex-direction: row;
   align-items: center;
   width: 447px;
+  color: inherit;
 
   ${(props) =>
     props.$IsLoading &&
     css`
       background-image: none;
       background-color: rgba(49, 49, 49, 1);
-      color: #313131;
       text-decoration: none;
     `};
 `
@@ -33,7 +33,7 @@ export const TrackTitleImage = styled.div`
   width: 51px;
   height: 51px;
   padding: 16px;
-  background: #313131;
+  background: #4e4e4e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,8 +60,8 @@ export const TrackTitleLink = styled.a`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
-
+  text-decoration: none;
+  color: inherit;
   ${(props) =>
     props.$IsLoading &&
     css`
@@ -98,9 +98,9 @@ export const TrackAuthorLink = styled.a`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: inherit;
   text-align: left;
-
+  text-decoration: none;
   ${(props) =>
     props.$IsLoading &&
     css`
@@ -128,7 +128,7 @@ export const TrackAlbumLink = styled.a`
   font-size: 16px;
   line-height: 24px;
   color: #696969;
-
+  text-decoration: none;
   ${(props) =>
     props.$IsLoading &&
     css`

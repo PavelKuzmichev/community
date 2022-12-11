@@ -14,7 +14,7 @@ const Track = ({ isLoading }) => {
         </S.TrackTitleImage>
         <S.TrackTitleText $IsLoading={isLoading}>
           <S.TrackTitleLink $IsLoading={isLoading} href="http://">
-            Guilt <S.TrackTitleSpan></S.TrackTitleSpan>
+            Guilt <S.TrackTitleSpan/>
           </S.TrackTitleLink>
         </S.TrackTitleText>
       </S.TrackTitle>

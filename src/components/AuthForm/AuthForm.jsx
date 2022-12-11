@@ -5,17 +5,16 @@ import { Fragment } from 'react'
 import * as S from './styles'
 const AuthForm = () => {
   const onSubmit = () => {
-    console.log('click')
+    
   }
   const { pathname } = useLocation()
 
   return (
     <S.PopupArea>
       <S.AuthForm onSubmit={onSubmit}>
-        <Logo color={'black'} />
-
-        <S.FormInput type="text" name="login" placeholder="Логин" required />
-        <S.FormSpan id="login-error"></S.FormSpan>
+        <Logo color={'black'}/>
+        <S.FormInput type="text" name="login" placeholder="Логин" required/>
+        <S.FormSpan id="login-error"/>
         <S.FormInput
           type="password"
           name="password"
@@ -24,7 +23,7 @@ const AuthForm = () => {
           minLength="8"
           required
         />
-        <S.FormSpan id="password-error"></S.FormSpan>
+        <S.FormSpan id="password-error"/>
         {pathname !== '/signin' && (
           <Fragment>
             <S.FormInput
@@ -34,7 +33,7 @@ const AuthForm = () => {
               minLength="8"
               required
             />
-            <S.FormSpan id="password-error"></S.FormSpan>
+            <S.FormSpan id="password-error"/>
           </Fragment>
         )}
 

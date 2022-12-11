@@ -8,7 +8,6 @@ export const CenterBlockTitle = styled.h2`
   font-style: normal;
   font-weight: 400;
   font-size: 64px;
-  color: white;
   line-height: 72px;
   letter-spacing: -0.8px;
   margin-bottom: 45px;
@@ -21,7 +20,6 @@ export const CenterBlockFilter = styled.div`
   margin-bottom: 51px;
 `
 export const CenterBlockFilterTitle = styled.h3`
-  color: white;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -35,8 +33,8 @@ export const CenterBlockFilterBtn = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: white;
-  border: 1px solid #ffffff;
+  color: inherit;
+  border: 1px solid ${(props) => (props.$IsTheme.dark ? '#ffffff' : '#000000')};
   border-radius: 60px;
   padding: 6px 20px;
   cursor: pointer;
@@ -62,8 +60,7 @@ export const SearchMenu = styled.div`
   gap: 28px;
   width: 248px;
   height: 305px;
-  color: #ffffff;
-  background: #313131;
+  background: ${(props) => (props.$IsTheme.dark ? '#313131' : '#ffffff')};
   border-radius: 12px;
 
   &::-webkit-scrollbar {
@@ -103,7 +100,6 @@ export const SearchMenuItem = styled.p`
   font-size: 20px;
   line-height: 24px;
   font-feature-settings: 'pnum' on, 'lnum' on;
-  color: #ffffff;
   &:hover {
     text-decoration-line: underline;
     color: #b672ff;
