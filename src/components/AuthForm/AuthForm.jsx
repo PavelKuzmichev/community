@@ -1,65 +1,102 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from "react-redux"
+
 import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Logo from '../Logo/Logo'
 import { Fragment } from 'react'
 import * as S from './styles'
-import { useLoginMutation, useRegisterMutation} from '../../services/login';
+//import { store } from '../../store/store'
+import { getUser } from '../../store/actions/creators/user'
+import { getToken } from '../../store/actions/creators/token'
+import { useLoginMutation, useRegisterMutation, useTokenMutation } from '../../services/login';
+import { useEffect } from 'react'
+//import { store } from '../../store/store';
 
 const AuthForm = () => {
- const [login] = useLoginMutation();
- const [register, { isLoading } ] = useRegisterMutation()
-  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const [currentUser, setCurrentUser] = useState(null)
+  const [login, {data: loginData}] = useLoginMutation();
+  const [register, {isLoading}] = useRegisterMutation()
+  const [token, {data: tokenData}] = useTokenMutation()
+  //const [refresh] = useRefreshMutation()
+  const [valueName, setValueName] = useState("");
   const [valuePassword, setValuePassword] = useState("");
-const onInputChange = (evt) => {
+  /*const update = () => {
+    if (store.getState().user) {
+      console.log(store.getState().user)
+      navigate("/")
+    }
+    return
+  };*/
+  
+  const onInputChange = (evt) => {
 
-    setValue(evt.target.value);
+    setValueName(evt.target.value);
   };
   const onInputChangePassword = (evt) => {
- 
-      setValuePassword(evt.target.value);
-    };
-  const onSubmit = () => {
+
+    setValuePassword(evt.target.value);
+  };
+  const onSubmit = (event) => {
     event.preventDefault()
-   
+
   }
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault()
     login({
       "password": valuePassword,
-      "email": value
-  });
-    setValue("");
+      "email": valueName
+    });
+    token({
+      "password": valuePassword,
+      "email": valueName
+    });
+   dispatch(getUser(loginData))
+   dispatch(getToken(tokenData))
+   localStorage.setItem('login', tokenData);
+    setCurrentUser(loginData)
+    setValueName("");
     setValuePassword("");
   };
   const handleRegister = () => {
     register({
-      "username": "PavelK",
+      "username": valueName,
       "first_name": "PavelK",
       "last_name": "PavelK",
-      "email": value,
+      "email": valueName,
       "password": valuePassword
-  });
-    setValue("");
+    });
+    setValueName("");
     setValuePassword("");
+    navigate("/signin")
   };
   const { pathname } = useLocation()
-
+  useEffect(() => {
+   
+    if(!currentUser) {
+    
+      return}
+    navigate("/")
+ }, [currentUser]) 
   return (
     <S.PopupArea>
       <S.AuthForm onSubmit={onSubmit}>
-        <Logo color={'black'}/>
-        <S.FormInput type="text" name="login" placeholder="Логин"  value={value} onChange={onInputChange} required/>
-        <S.FormSpan id="login-error"/>
+        <Logo color={'black'} />
+        <S.FormInput type="text" name="login" placeholder="Логин" value={valueName} onChange={onInputChange} required />
+        <S.FormSpan id="login-error" />
         <S.FormInput
           type="password"
           name="password"
           id="password"
-          value={valuePassword} 
-              onChange={onInputChangePassword}
+          value={valuePassword}
+          onChange={onInputChangePassword}
           placeholder="Пароль"
           minLength="8"
           required
         />
-        <S.FormSpan id="password-error"/>
+        <S.FormSpan id="password-error" />
         {pathname !== '/signin' && (
           <Fragment>
             <S.FormInput
@@ -67,19 +104,19 @@ const onInputChange = (evt) => {
               name="password"
               placeholder="Повторите пароль"
               minLength="8"
-              value={valuePassword} 
+              value={valuePassword}
               onChange={onInputChangePassword}
               required
             />
-            <S.FormSpan id="password-error"/>
+            <S.FormSpan id="password-error" />
           </Fragment>
         )}
-
-        <S.FormButton disabled={isLoading} onClick={handleLogin} >Войти</S.FormButton>
+{pathname === '/signin' && <S.FormButton disabled={isLoading} onClick={  handleLogin} >Войти</S.FormButton>}
+ {pathname=== '/signup' && <S.FormButton disabled={isLoading} onClick={  handleRegister }>Зарегистрироваться</S.FormButton>}
         {pathname === '/signin' && (
           <Fragment>
             <Link to="/signup" title="Перейти к регистрации.">
-              <S.FormButtonRegister disabled={isLoading} onClick={handleRegister}>Зарегистрироваться</S.FormButtonRegister>
+              <S.FormButtonRegister disabled={isLoading} onClick={()=>navigate("/signin")}>Зарегистрироваться</S.FormButtonRegister>
             </Link>
           </Fragment>
         )}

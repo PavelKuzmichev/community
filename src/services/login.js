@@ -22,7 +22,21 @@ export const loginApi = createApi({
         body,
       }),
     }),
+    token: builder.mutation({
+      query: (body) => ({
+        url: 'token/',
+        method: 'POST',
+        body
+      })
+    }),
+    refresh: builder.mutation({
+      query: (body) => ({
+        url: 'token/refresh/',
+        method: 'POST',
+        body
+      })
+    }),
   }),
 });
 
-export const {  useLoginMutation, useRegisterMutation } = loginApi;
+export const {  useLoginMutation, useRegisterMutation, useTokenMutation, useRefreshMutation } = loginApi;

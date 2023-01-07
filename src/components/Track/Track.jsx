@@ -1,14 +1,26 @@
 
-import React from 'react'
+import { React, useState} from 'react'
 //import { Route, Switch} from 'react-router-dom'
-
+import { store } from '../../store/store'
+import { useDispatch } from "react-redux"
 import * as S from './styles'
+import { setCurrentTrack } from '../../store/actions/creators/track'
+import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
+import { useAddLikeMutation } from '../../services/tracks'
 
-const Track = ({ isLoading, track, setCurrentTrack }) => {
-  
-  
+const Track = ({ isLoading, track}) => {
+  const [addLike] = useAddLikeMutation();
+  const [activeLike, setActiveLike] = useState(false)
+  const dispatch = useDispatch();
+  const token = store.getState().token.access
+  const id = track.id
+  const { theme } = useThemeContext()
+  const toggleLike =()=>{
+     setActiveLike(!activeLike)
+      addLike( {id, token} )
+  }
   return (
-    <S.Track onClick={()=>{setCurrentTrack(track)}} $IsLoading={isLoading}>
+    <S.Track onClick={()=>{dispatch(setCurrentTrack(track))}} $IsLoading={isLoading}>
       <S.TrackTitle $IsLoading={isLoading}>
         <S.TrackTitleImage   $IsLoading={isLoading}>
           <S.TrackTitleSvg>
@@ -32,7 +44,7 @@ const Track = ({ isLoading, track, setCurrentTrack }) => {
         </S.TrackAlbumLink>
       </S.TrackAlbum>
       <S.TrackTime>
-        <S.TrackTimeSvg  alt="time"></S.TrackTimeSvg >
+        <S.TrackTimeSvg onClick={toggleLike} $IsLike={activeLike} alt="time" $IsTheme={theme}></S.TrackTimeSvg >
         <S.TrackTimeText $IsLoading={isLoading}>{track.duration_in_seconds}</S.TrackTimeText>
       </S.TrackTime>
     </S.Track>

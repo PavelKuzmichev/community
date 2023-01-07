@@ -1,9 +1,16 @@
 import { React, useRef, useState, useEffect } from 'react'
 import * as S from './styles'
-import song from '../../audio/song.mp3'
+//import song from '../../audio/song.mp3'
 import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
+import { store } from '../../store/store'
 
-function Player({currentTrack}) {
+
+function Player() {
+ const [currentTrack, setCurrentTrack] = useState('')
+ console.log( currentTrack.track_file )
+  
+ store.subscribe(() => setCurrentTrack(store.getState().currentTrack))
+
   const { theme } = useThemeContext()
   const [isPlaying, setIsPlaying] = useState(false)
   const [trackProgress, setTrackProgress] = useState(0)
@@ -22,6 +29,10 @@ function Player({currentTrack}) {
       }
     }, [100])
   }
+  useEffect(() => {
+    setTrackProgress(0)
+    setIsPlaying(false)
+  }, [currentTrack])
   useEffect(() => {
     if (isPlaying) {
       audioRef.current.play()
@@ -45,9 +56,9 @@ function Player({currentTrack}) {
   const togglePlay = isPlaying ? handleStop : handleStart
   return (
     <S.Player>
-      <S.Audio controls ref={audioRef}>
-        <source src={currentTrack ? currentTrack.track_file : song} type="audio/mpeg" />
-      </S.Audio>
+      <S.Audio controls ref={audioRef} src={currentTrack.track_file} type="audio/mpeg" />
+        
+      
       <S.PlayerProgress $IsTheme={theme} $trackProgress={trackProgress} />
       <S.PlayerBlock>
         <S.PlayerBlockButtons>
