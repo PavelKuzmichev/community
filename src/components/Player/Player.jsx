@@ -3,7 +3,7 @@ import * as S from './styles'
 import song from '../../audio/song.mp3'
 import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
 
-function Player() {
+function Player({currentTrack}) {
   const { theme } = useThemeContext()
   const [isPlaying, setIsPlaying] = useState(false)
   const [trackProgress, setTrackProgress] = useState(0)
@@ -46,7 +46,7 @@ function Player() {
   return (
     <S.Player>
       <S.Audio controls ref={audioRef}>
-        <source src={song} type="audio/mpeg" />
+        <source src={currentTrack ? currentTrack.track_file : song} type="audio/mpeg" />
       </S.Audio>
       <S.PlayerProgress $IsTheme={theme} $trackProgress={trackProgress} />
       <S.PlayerBlock>
@@ -64,8 +64,8 @@ function Player() {
         <S.PlayerBlockSong>
           <S.PlayerBlockSongImage />
           <S.PlayerBlockSongContent>
-            <S.PlayerBlockSongAuthor>Баста</S.PlayerBlockSongAuthor>
-            <S.PlayerBlockSongTitle>Ты та...</S.PlayerBlockSongTitle>
+            <S.PlayerBlockSongAuthor>{currentTrack ? currentTrack.author : 'Баста'}</S.PlayerBlockSongAuthor>
+            <S.PlayerBlockSongTitle>{currentTrack ? currentTrack.name : 'Ты не та'}.</S.PlayerBlockSongTitle>
           </S.PlayerBlockSongContent>
         </S.PlayerBlockSong>
         <S.PlayerBlockLikeBtns>

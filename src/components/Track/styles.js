@@ -149,12 +149,10 @@ export const TrackTitleText = styled.div`
       text-decoration: none;
     `};
 `
-export const TrackTimeSvg = styled.svg`
-  width: 14px;
-  height: 12px;
-  margin-right: 17px;
-  fill: transparent;
-  stroke: #696969;
+export const TrackTimeSvg = styled.button`
+
+}
+
 `
 export const TrackTimeText = styled.span`
   font-style: normal;

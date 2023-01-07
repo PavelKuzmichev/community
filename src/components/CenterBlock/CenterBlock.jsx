@@ -4,15 +4,41 @@ import Track from '../Track/Track'
 import { bool } from 'prop-types'
 import * as S from './styles'
 import { useThemeContext } from '../../contexts/CurrentThemeContext.js'
-function CenterBlock({ isPlayList, isLoading }) {
+import { useGetAllTracksQuery } from '../../services/tracks'
+//import { TrackAuthor } from '../Track/styles'
+
+
+function CenterBlock({ isPlayList, isLoading1  }) {
+  const { data } = useGetAllTracksQuery()
+
+  let authors = data ? data.map((track) => track.author) : []
+  let uniqueAuthors = authors.filter((element, index) => {
+    return authors.indexOf(element) === index
+  })
+  let genres = data ? data.map((track) => track.genre) : []
+  let uniqueGenres = genres.filter((element, index) => {
+    return genres.indexOf(element) === index
+  })
+
   CenterBlock.propTypes = {
     isLoading: bool,
   }
+
   const { theme } = useThemeContext()
   const [isSearchMenuAuthorOpen, setSearchMenuAuthorOpen] =
     React.useState(false)
+  const [searchValue, setSearchValue] = React.useState('')
+  let tracks = searchValue === 'older' ? [...data].sort(function (a, b) {
+      
+    return new Date(a.release_date) - new Date(b.release_date);
+  }) : searchValue === 'newer' ? [...data].sort(function (a, b) {
+      
+    return new Date(b.release_date) - new Date(a.release_date) }) : searchValue
+    ? data.filter((item) => item.author === searchValue || item.genre === searchValue)
+    : data
   const [isSearchMenuGenreOpen, setSearchMenuGenreOpen] = React.useState(false)
   const [isSearchMenuYearOpen, setSearchMenuYearOpen] = React.useState(false)
+  const [value, setValue] = React.useState("");
   const toggleSearchMenuYearOpen = () => {
     closeAllSearchMenu()
     setSearchMenuYearOpen(!isSearchMenuYearOpen)
@@ -30,7 +56,13 @@ function CenterBlock({ isPlayList, isLoading }) {
     setSearchMenuGenreOpen(false)
     setSearchMenuYearOpen(false)
   }
-  // const title = 1
+  const sortTracks = (evt) => {
+    setSearchValue(evt.target.textContent)
+  }
+  const filterNewestTracks = (evt) => {
+    setValue(evt.target.value);
+    setSearchValue(value)
+  };
   return (
     <S.CenterBlock>
       <S.CenterBlockTitle>Треки</S.CenterBlockTitle>
@@ -48,12 +80,14 @@ function CenterBlock({ isPlayList, isLoading }) {
             {isSearchMenuAuthorOpen && (
               <Fragment>
                 <S.SearchMenuAuthor $IsTheme={theme}>
-                  <S.SearchMenuItem>Michael Jackson</S.SearchMenuItem>
-                  <S.SearchMenuItem>Frank Sinatra</S.SearchMenuItem>
-                  <S.SearchMenuItem>Calvin Harris</S.SearchMenuItem>
-                  <S.SearchMenuItem>Zhu</S.SearchMenuItem>
-                  <S.SearchMenuItem>Arctic Monkeys</S.SearchMenuItem>
-                  <S.SearchMenuItem>Eminem</S.SearchMenuItem>
+                  {uniqueAuthors.sort().map((author, index) => (
+                    <S.SearchMenuItem
+                      onClick={(event) => sortTracks(event)}
+                      key={index}
+                    >
+                      {author}
+                    </S.SearchMenuItem>
+                  ))}
                 </S.SearchMenuAuthor>
               </Fragment>
             )}
@@ -72,8 +106,9 @@ function CenterBlock({ isPlayList, isLoading }) {
                     id="yearNewer"
                     name="year"
                     value="newer"
+                    onChange={filterNewestTracks}
                   ></S.SearchMenuYearInput>
-                  <S.SearchMenuItem htmlFor="yearNewer">
+                  <S.SearchMenuItem htmlFor="yearNewer" onChange={filterNewestTracks}>
                     Более новые
                   </S.SearchMenuItem>
 
@@ -82,8 +117,8 @@ function CenterBlock({ isPlayList, isLoading }) {
                     id="yearOLder"
                     name="year"
                     value="older"
-                  ></S.SearchMenuYearInput>
-                  <S.SearchMenuItem htmlFor="yearOlder">
+                  onChange={filterNewestTracks} ></S.SearchMenuYearInput>
+                  <S.SearchMenuItem htmlFor="yearOlder" onChange={filterNewestTracks}>
                     Более старые
                   </S.SearchMenuItem>
                 </S.SearchMenuYear>
@@ -99,12 +134,9 @@ function CenterBlock({ isPlayList, isLoading }) {
             {isSearchMenuGenreOpen && (
               <Fragment>
                 <S.SearchMenuGenre $IsTheme={theme}>
-                  <S.SearchMenuItem>Рок</S.SearchMenuItem>
-                  <S.SearchMenuItem>Хип-хоп</S.SearchMenuItem>
-                  <S.SearchMenuItem>Поп-музыка</S.SearchMenuItem>
-                  <S.SearchMenuItem>Техно</S.SearchMenuItem>
-                  <S.SearchMenuItem>Инди</S.SearchMenuItem>
-                  <S.SearchMenuItem>Кантри</S.SearchMenuItem>
+                  {uniqueGenres.sort().map((genre, index) => (
+                    <S.SearchMenuItem onClick={(event) => sortTracks(event)} key={index}>{genre}</S.SearchMenuItem>
+                  ))}
                 </S.SearchMenuGenre>
               </Fragment>
             )}
@@ -124,25 +156,18 @@ function CenterBlock({ isPlayList, isLoading }) {
         <S.CenterBlockPlayList>
           {isPlayList && (
             <Fragment>
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
+              <Track isLoading={isLoading1} />
+              <Track isLoading={isLoading1} />
+              <Track isLoading={isLoading1} />
+              <Track isLoading={isLoading1} />
+              <Track isLoading={isLoading1} />
             </Fragment>
           )}
           {!isPlayList && (
             <Fragment>
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
-              <Track isLoading={isLoading} />
+              {data
+                ? tracks.map((track) => <Track key={track.id} track={track} />)
+                : 'треки не найдены'}
             </Fragment>
           )}
         </S.CenterBlockPlayList>
