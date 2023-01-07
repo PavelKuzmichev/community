@@ -9,13 +9,15 @@ import { useGetAllTracksQuery } from '../../services/tracks'
 
 
 function CenterBlock({ isPlayList, isLoading1  }) {
-  const { data } = useGetAllTracksQuery()
+  const {
+    data: tracks = []
+} = useGetAllTracksQuery()
 
-  let authors = data ? data.map((track) => track.author) : []
+  let authors = tracks ? tracks.map((track) => track.author) : []
   let uniqueAuthors = authors.filter((element, index) => {
     return authors.indexOf(element) === index
   })
-  let genres = data ? data.map((track) => track.genre) : []
+  let genres = tracks ? tracks.map((track) => track.genre) : []
   let uniqueGenres = genres.filter((element, index) => {
     return genres.indexOf(element) === index
   })
@@ -28,14 +30,14 @@ function CenterBlock({ isPlayList, isLoading1  }) {
   const [isSearchMenuAuthorOpen, setSearchMenuAuthorOpen] =
     React.useState(false)
   const [searchValue, setSearchValue] = React.useState('')
-  let tracks = searchValue === 'older' ? [...data].sort(function (a, b) {
+  let filtredtracks = searchValue === 'older' ? [...tracks].sort(function (a, b) {
       
     return new Date(a.release_date) - new Date(b.release_date);
-  }) : searchValue === 'newer' ? [...data].sort(function (a, b) {
+  }) : searchValue === 'newer' ? [...tracks].sort(function (a, b) {
       
     return new Date(b.release_date) - new Date(a.release_date) }) : searchValue
-    ? data.filter((item) => item.author === searchValue || item.genre === searchValue)
-    : data
+    ? tracks.filter((item) => item.author === searchValue || item.genre === searchValue)
+    : tracks
   const [isSearchMenuGenreOpen, setSearchMenuGenreOpen] = React.useState(false)
   const [isSearchMenuYearOpen, setSearchMenuYearOpen] = React.useState(false)
   const [value, setValue] = React.useState("");
@@ -165,8 +167,8 @@ function CenterBlock({ isPlayList, isLoading1  }) {
           )}
           {!isPlayList && (
             <Fragment>
-              {data
-                ? tracks.map((track) => <Track key={track.id} track={track} />)
+              {tracks
+                ? filtredtracks.map((track) => <Track key={track.id} track={track} />)
                 : 'треки не найдены'}
             </Fragment>
           )}

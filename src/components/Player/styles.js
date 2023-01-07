@@ -24,8 +24,8 @@ import stopHover from '../../images/icon/stop-hover.svg'
 import playHover from '../../images/icon/play-hover.svg'
 
 export const Player = styled.div`
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  bottom: 0vh;
   width: 100%;
   margin-bottom: 10px;
 `

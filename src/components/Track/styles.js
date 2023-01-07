@@ -1,4 +1,11 @@
 import styled, { css } from 'styled-components'
+import like from '../../images/icon/like.svg'
+import activelike from '../../images/icon/like-active.svg'
+import dislike from '../../images/icon/dislike.svg'
+import likeLight from '../../images/icon/likeLight.svg'
+import dislikeLight from '../../images/icon/dislikeLight.svg'
+import likeHover from '../../images/icon/like-hover.svg'
+import dislikeHover from '../../images/icon/dislike-hover.svg'
 
 export const Track = styled.div`
   text-decoration: none;
@@ -150,9 +157,25 @@ export const TrackTitleText = styled.div`
     `};
 `
 export const TrackTimeSvg = styled.button`
-
+cursor: pointer;
+border: none;
+width: 14px;
+height: 13px;
+background-repeat: no-repeat;
+background-position: center;
+background-color: transparent;
+background-image: url(${(props) =>
+  props.$IsDisLike
+    ? props.$IsTheme.dark
+      ? dislike
+      : dislikeLight
+    : props.$IsTheme.dark
+    ? props.$IsLike ? activelike : like
+    : likeLight});
+&:hover {
+  background-image: url(${(props) =>
+    props.$IsDisLike ? dislikeHover : likeHover});
 }
-
 `
 export const TrackTimeText = styled.span`
   font-style: normal;
